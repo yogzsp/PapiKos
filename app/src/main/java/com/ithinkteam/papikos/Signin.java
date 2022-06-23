@@ -8,16 +8,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Signin extends AppCompatActivity {
 
-    TextView btn_masuk;
+    TextView btn_masuk, btn_signup,btn_lupaPass;
     EditText et_email, et_password;
     boolean v_email = false, v_pass = false;
 
@@ -27,13 +29,38 @@ public class Signin extends AppCompatActivity {
         setContentView(R.layout.signin);
 
         btn_masuk = findViewById(R.id.btn_masuk);
+        btn_signup = findViewById(R.id.signUP);
+        btn_lupaPass = findViewById(R.id.forgotPass);
         btn_masuk.setEnabled(false);
         btn_masuk.setBackgroundResource(R.color.hijau_tua);
 
         et_email = findViewById(R.id.email);
         et_password = findViewById(R.id.password);
 
-        //check input email
+        //Klik Tombol
+        btn_masuk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Masih coming soon",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_lupaPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),SignUp.class));
+            }
+        });
+
+        btn_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),SignUp.class));
+            }
+        });
+
+
+        //check input
         et_email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -48,6 +75,7 @@ public class Signin extends AppCompatActivity {
                     v_email = true;
                     if (v_email == true && v_pass == true) {
                         btn_masuk.setEnabled(true);
+                        btn_masuk.setBackgroundResource(R.color.hijau);
                     } else {
                         btn_masuk.setEnabled(false);
                         btn_masuk.setBackgroundResource(R.color.hijau_tua);
@@ -81,6 +109,7 @@ public class Signin extends AppCompatActivity {
                         v_pass = true;
                         if (v_email == true && v_pass == true) {
                             btn_masuk.setEnabled(true);
+                            btn_masuk.setBackgroundResource(R.color.hijau);
                         } else {
                             btn_masuk.setEnabled(false);
                             btn_masuk.setBackgroundResource(R.color.hijau_tua);

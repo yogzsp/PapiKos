@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PapiKos">
         <activity
+            android:name=".SignUp"
+            android:exported="true" />
+        <activity
             android:name=".Signin"
             android:exported="true" />
         <activity
