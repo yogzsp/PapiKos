@@ -136,7 +136,7 @@
                         android:background="@drawable/bg_abu"
                         android:ems="10"
                         android:hint="password"
-                        android:inputType="textEmailAddress"
+                        android:inputType="textPassword"
                         android:padding="2dp"
                         android:paddingStart="10dp"
                         android:textColor="@color/black"
