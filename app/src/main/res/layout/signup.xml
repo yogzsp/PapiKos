@@ -1,9 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".SignUp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinslight"
+            android:text="papi"
+            android:textFontWeight="700"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppinslight"
+            android:text="kos"
+            android:textColor="@color/hijau"
+            android:textFontWeight="700"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/navbar"
+        android:layout_marginTop="1dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="100dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinbold"
+                android:text="Segera Daftar!"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinslight"
+                android:text="temukan kos impianmu bersama papikos"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/FormLogin"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppinbold"
+                    android:text="Email"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_abu"
+                    app:boxStrokeColor="#fff"
+                    app:boxStrokeWidth="0dp"
+                    app:counterMaxLength="10"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@color/black">
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_abu"
+                        android:ems="10"
+                        android:hint="example@email.com"
+                        android:inputType="textEmailAddress"
+                        android:padding="2dp"
+                        android:paddingStart="10dp"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/cursor"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/errorEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:visibility="invisible"
+                    android:fontFamily="@font/poppinbold"
+                    android:text="*pastikan email yang dimasukan benar!"
+                    android:textColor="@color/merah"
+                    android:textSize="10sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/poppinbold"
+                    android:text="Username"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_abu"
+                    app:boxStrokeColor="#fff"
+                    app:boxStrokeWidth="0dp"
+                    app:counterMaxLength="10"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@color/black">
+
+                    <EditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_abu"
+                        android:ems="10"
+                        android:hint="username"
+                        android:minLines="4"
+                        android:inputType="text"
+                        android:padding="2dp"
+                        android:paddingStart="10dp"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/cursor"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/errorUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:visibility="invisible"
+                    android:fontFamily="@font/poppinbold"
+                    android:text="*username terdiri dari 4 karakter!"
+                    android:textColor="@color/merah"
+                    android:textSize="10sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/poppinbold"
+                    android:text="Password"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_abu"
+                    app:boxStrokeColor="#fff"
+                    app:boxStrokeWidth="0dp"
+                    app:counterMaxLength="10"
+                    app:endIconMode="password_toggle"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@color/black">
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_abu"
+                        android:ems="10"
+                        android:hint="password"
+                        android:inputType="textPassword"
+                        android:padding="2dp"
+                        android:paddingStart="10dp"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/cursor"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/errorPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:visibility="invisible"
+                    android:fontFamily="@font/poppinbold"
+                    android:text="*password terdiri dari huruf besar,kecil, angka dan spesial!"
+                    android:textColor="@color/merah"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/btn_masuk"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/bg_hijau"
+                    android:fontFamily="@font/poppinbold"
+                    android:gravity="center"
+                    android:text="Masuk"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/signIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppinbold"
+                        android:gravity="center"
+                        android:text="pengguna baru? klik untuk membuat akun"
+                        android:textColor="@color/hijau"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/forgotPass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="right"
+                        android:layout_marginEnd="1dp"
+                        android:fontFamily="@font/poppinbold"
+                        android:gravity="center_vertical"
+                        android:text="lupa password"
+                        android:textColor="@color/hijau"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
