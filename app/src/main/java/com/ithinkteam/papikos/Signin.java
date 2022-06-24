@@ -14,19 +14,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Signin extends AppCompatActivity {
+public class Signin extends AppCompatActivity implements View.OnClickListener{
 
     TextView btn_masuk, btn_signup,btn_lupaPass;
+    FirebaseAuth firebaseAuth;
     EditText et_email, et_password;
-    boolean v_email = false, v_pass = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         btn_masuk = findViewById(R.id.btn_masuk);
         btn_signup = findViewById(R.id.signUP);
@@ -43,13 +47,6 @@ public class Signin extends AppCompatActivity {
             }
         });
 
-        btn_lupaPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),SignUp.class));
-            }
-        });
-
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,5 +54,19 @@ public class Signin extends AppCompatActivity {
             }
         });
 
+        if(firebaseAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(),MainMenu.class));
+            finish();
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.signUP:
+                startActivity(new Intent(Signin.this,SignUp.class));
+                break;
+        }
     }
 }

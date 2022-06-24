@@ -214,14 +214,14 @@
                     android:textSize="10sp" />
 
                 <TextView
-                    android:id="@+id/btn_masuk"
+                    android:id="@+id/btn_daftar"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/bg_hijau"
                     android:fontFamily="@font/poppinbold"
                     android:gravity="center"
-                    android:text="Masuk"
+                    android:text="Daftar"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
@@ -241,18 +241,6 @@
                         android:textColor="@color/hijau"
                         android:textSize="11sp" />
 
-                    <TextView
-                        android:id="@+id/forgotPass"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentEnd="true"
-                        android:layout_gravity="right"
-                        android:layout_marginEnd="1dp"
-                        android:fontFamily="@font/poppinbold"
-                        android:gravity="center_vertical"
-                        android:text="lupa password"
-                        android:textColor="@color/hijau"
-                        android:textSize="11sp" />
                 </RelativeLayout>
 
             </LinearLayout>

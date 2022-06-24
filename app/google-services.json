@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "764429193913",
+    "project_id": "papikos-54023",
+    "storage_bucket": "papikos-54023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764429193913:android:a235ba7e63387e86694168",
+        "android_client_info": {
+          "package_name": "com.ithinkteam.papikos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764429193913-c6mbdgar60a2ib3qq1gmhop7v7svcvig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ithinkteam.papikos",
+            "certificate_hash": "ee71eee27709a1a97ff20193d9c86d32b4e9d747"
+          }
+        },
+        {
+          "client_id": "764429193913-9co174fmm5nagpvis8klmm84p9cegtqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADaGTV21OGme1BDZgtMVrM2I4i324CQn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764429193913-9co174fmm5nagpvis8klmm84p9cegtqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

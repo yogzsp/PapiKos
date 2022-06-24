@@ -1,5 +1,6 @@
 package com.ithinkteam.papikos;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,12 +12,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
-    TextView btn_masuk, btn_signin, errEmail, errPass,errUsername;
+    FirebaseAuth firebaseAuth;
+    TextView btn_daftar, btn_signin, errEmail, errPass,errUsername;
     EditText et_email, et_password, et_username;
     boolean v_email = false, v_pass = false,v_username=false;
 
@@ -25,31 +32,60 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
-        btn_masuk = findViewById(R.id.btn_masuk);
+        btn_daftar = findViewById(R.id.btn_daftar);
         btn_signin = findViewById(R.id.signIn);
         errEmail = findViewById(R.id.errorEmail);
         errPass = findViewById(R.id.errorPassword);
         errUsername = findViewById(R.id.errorUsername);
 
-        btn_masuk.setEnabled(false);
-        btn_masuk.setBackgroundResource(R.color.hijau_tua);
+        btn_daftar.setEnabled(false);
+        btn_daftar.setBackgroundResource(R.color.hijau_tua);
 
         et_email = findViewById(R.id.email);
         et_username = findViewById(R.id.username);
         et_password = findViewById(R.id.password);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
+
+
+
+
+        if(firebaseAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(),MainMenu.class));
+            finish();
+        }
+
+
         //Klik Tombol
-        btn_masuk.setOnClickListener(new View.OnClickListener() {
+        btn_daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Masih coming soon",Toast.LENGTH_SHORT).show();
+                String email = et_email.getText().toString().trim();
+                String password = et_password.getText().toString().trim();
+                String username = et_username.getText().toString().trim();
+
+                firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Berhasil membuat akun",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),MainMenu.class));
+                        }else {
+                            Toast.makeText(getApplicationContext(),"Error!" + task.getException().getMessage().toString(),Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
+
+
 
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Signin.class));
+                finish();
             }
         });
 
@@ -162,11 +198,11 @@ public class SignUp extends AppCompatActivity {
 
     public void checkValue(){
         if (v_email == true && v_pass == true && v_username == true) {
-            btn_masuk.setEnabled(true);
-            btn_masuk.setBackgroundResource(R.color.hijau);
+            btn_daftar.setEnabled(true);
+            btn_daftar.setBackgroundResource(R.color.hijau);
         } else {
-            btn_masuk.setEnabled(false);
-            btn_masuk.setBackgroundResource(R.color.hijau_tua);
+            btn_daftar.setEnabled(false);
+            btn_daftar.setBackgroundResource(R.color.hijau_tua);
         }
     }
 }
