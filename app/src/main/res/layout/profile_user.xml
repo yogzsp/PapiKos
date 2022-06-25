@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".MainMenu">
+    tools:context=".ProfileUser">
 
     <LinearLayout
         android:id="@+id/headerBar"
@@ -49,58 +49,52 @@
                 android:layout_marginEnd="0dp"
                 android:src="@drawable/ic_bell_none" />
         </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/cariBox"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_abu"
-                app:boxStrokeColor="#fff"
-                app:boxStrokeWidth="0dp"
-                app:counterMaxLength="10"
-                app:startIconDrawable="@drawable/ic_search"
-                app:hintEnabled="false"
-                app:hintTextColor="@color/black">
-    
-                <EditText
-                    android:id="@+id/cariKos"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_abu"
-                    android:ems="10"
-                    android:hint="Cari kos disini"
-                    android:inputType="text"
-                    android:padding="2dp"
-                    android:paddingStart="10dp"
-                    android:textColor="@color/black"
-                    android:textCursorDrawable="@drawable/cursor"
-                    android:textSize="15sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
     </LinearLayout>
 
-<!--List Menu-->
+    <!--List Menu-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/navbarBottom"
         android:layout_below="@+id/headerBar"
         android:layout_marginTop="0dp"
+        android:paddingTop="10dp"
         android:layout_marginBottom="0dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_menu_kos"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/papikos"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/namaUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selamat datang Gais!"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppinsregular"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/btn_logout"
+                android:layout_marginTop="20dp"
+                android:layout_width="343dp"
+                android:layout_height="40dp"
+                android:text="LOGOUT"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:background="@drawable/bg_hijau"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppinbold"/>
+        </LinearLayout>
 
     </ScrollView>
 
-<!--    navbar-->
+    <!--    navbar-->
     <LinearLayout
         android:id="@+id/navbarBottom"
         android:layout_width="match_parent"
