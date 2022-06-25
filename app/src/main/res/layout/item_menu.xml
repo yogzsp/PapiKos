@@ -67,7 +67,7 @@
                     android:gravity="center_vertical"
                     android:text="Kost Indah Permata Kekalik Jaya"
                     android:textSize="14dp"
-                    android:fontFamily="@font/poppinslight"
+                    android:fontFamily="@font/poppinsregular"
                     android:textFontWeight="700"/>
             </LinearLayout>
 <!--            Lokasi Kos-->
@@ -86,6 +86,7 @@
                     android:id="@+id/lokasiKos"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/poppinsregular"
                     android:text="Mataram"/>
             </LinearLayout>
             <LinearLayout

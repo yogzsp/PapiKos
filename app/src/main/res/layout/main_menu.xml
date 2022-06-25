@@ -95,6 +95,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_menu_kos"
+            android:overScrollMode="never"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

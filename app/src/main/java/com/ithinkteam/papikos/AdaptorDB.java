@@ -69,7 +69,7 @@ public class AdaptorDB extends RecyclerView.Adapter<AdaptorDB.FavoriteViewHolder
         holder.et_namaKost.setText(mp.getNamaKost());
         holder.et_kotaKost.setText(mp.getKotaKost());
         holder.et_jenisKost.setText(mp.getJenisKost());
-        holder.et_fasilitas.setText(mp.getFasilitasKost());
+        holder.et_fasilitas.setText(mp.getFasilitasKost().replaceAll("\n","•"));
     }
 
     @Override

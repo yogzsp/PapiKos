@@ -82,7 +82,7 @@ public class AddKost extends AppCompatActivity {
             public void onClick(View view) {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
-                        .setAspectRatio(343,220)
+                        .setAspectRatio(343, 220)
                         .start(AddKost.this);
             }
         });
@@ -181,7 +181,7 @@ public class AddKost extends AppCompatActivity {
 //                susun fasilitas
                 StringBuilder stringBuilder = new StringBuilder();
                 for (String s : mFasilitas)
-                    stringBuilder.append(s).append("+");
+                    stringBuilder.append(s).append("\n");
 
 //                value
                 fasilitas = stringBuilder.toString();
@@ -192,8 +192,11 @@ public class AddKost extends AppCompatActivity {
                 String linkGMap = et_linkGMap.getText().toString();
                 String jenisKost = et_jenisKost.getText().toString();
                 String deskripsi = et_deskripsi.getText().toString();
-
-                savePost();
+                if (!fasilitas.isEmpty() && !namaKost.isEmpty() && !NoHP.isEmpty() && !alamat.isEmpty() && !kota.isEmpty() && !linkGMap.isEmpty() && !jenisKost.isEmpty() && !deskripsi.isEmpty()) {
+                    savePost();
+                } else {
+                    Toast.makeText(getApplicationContext(),"Pastikan anda mengisi semua data yang ada",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -213,7 +216,8 @@ public class AddKost extends AppCompatActivity {
             uploadTask.addOnProgressListener(taskSnapshot -> {
                 // Memunculkan loading 0% - 100%
                 double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                        progressDialog.setMessage("Uploading.." + ((int) progress) + "%");
+                System.out.println(progress);
+                progressDialog.setMessage("Uploading.." + ((int) progress) + "%");
             }).addOnPausedListener(taskSnapshot -> {
                 // Membuat progress jeda
 
