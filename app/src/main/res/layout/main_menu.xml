@@ -8,6 +8,7 @@
     tools:context=".MainMenu">
 
     <LinearLayout
+        android:id="@+id/headerBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -83,4 +84,83 @@
         </LinearLayout>
     </LinearLayout>
 
+<!--List Menu-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navbarBottom"
+        android:layout_below="@+id/headerBar"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_menu_kos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </ScrollView>
+
+<!--    navbar-->
+    <LinearLayout
+        android:id="@+id/navbarBottom"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <LinearLayout
+            android:id="@+id/favoritMenu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_marginRight="30dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_love"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Favorit"
+                android:textAlignment="center"
+                android:textSize="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/homeMenu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_marginRight="30dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_home"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Home"
+                android:textAlignment="center"
+                android:textSize="10dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/profileMenu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_user"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Profile"
+                android:textAlignment="center"
+                android:textSize="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>
