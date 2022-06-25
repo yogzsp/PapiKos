@@ -12,10 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PapiKos">
         <activity
+<<<<<<< HEAD
+            android:name=".AddKost"
+=======
             android:name=".Detail"
             android:exported="true" />
         <activity
             android:name=".ProfileUser"
+>>>>>>> 73544e49b332cf4c1a7147c80bc6d6bf5e89f4f7
             android:exported="true" />
         <activity
             android:name=".MainMenu"
