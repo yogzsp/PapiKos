@@ -11,15 +11,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_kost);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(getApplicationContext(), Signin.class));
-                finish();
-            }
-        }, 1000L); //3000 L = 3 detik
+//        final Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                startActivity(new Intent(getApplicationContext(), Signin.class));
+//                finish();
+//            }
+//        }, 1000L); //3000 L = 3 detik
     }
 }

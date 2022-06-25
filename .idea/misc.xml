@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Development/PapiKos/app/src/main/res/drawable/bg_abu.xml" value="0.20052083333333334" />
+        <entry key="..\:/Development/PapiKos/app/src/main/res/drawable/ic_love.xml" value="0.20052083333333334" />
+        <entry key="..\:/Development/PapiKos/app/src/main/res/layout/activity_add_kost.xml" value="0.22" />
+        <entry key="..\:/Development/PapiKos/app/src/main/res/layout/item_menu.xml" value="0.36009732360097324" />
+        <entry key="..\:/Development/PapiKos/app/src/main/res/layout/list_item.xml" value="0.1" />
+        <entry key="..\:/Development/PapiKos/app/src/main/res/layout/signin.xml" value="0.22" />
         <entry key="..\:/kelompok yogi/papikos/project/app/src/main/res/drawable/bd_bottom.xml" value="0.1671875" />
         <entry key="..\:/kelompok yogi/papikos/project/app/src/main/res/drawable/bg_abu.xml" value="0.21388888888888888" />
         <entry key="..\:/kelompok yogi/papikos/project/app/src/main/res/drawable/bg_hijau.xml" value="0.12604166666666666" />
