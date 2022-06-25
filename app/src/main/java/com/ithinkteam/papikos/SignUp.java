@@ -23,9 +23,9 @@ import java.util.regex.Pattern;
 public class SignUp extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
-    TextView btn_daftar, btn_signin, errEmail, errPass,errUsername;
+    TextView btn_daftar, btn_signin, errEmail, errPass, errUsername;
     EditText et_email, et_password, et_username;
-    boolean v_email = false, v_pass = false,v_username=false;
+    boolean v_email = false, v_pass = false, v_username = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +48,8 @@ public class SignUp extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-
-
-
-
-        if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainMenu.class));
+        if (firebaseAuth.getCurrentUser() != null) {
+            startActivity(new Intent(getApplicationContext(), MainMenu.class));
             finish();
         }
 
@@ -66,20 +62,19 @@ public class SignUp extends AppCompatActivity {
                 String password = et_password.getText().toString().trim();
                 String username = et_username.getText().toString().trim();
 
-                firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),"Berhasil membuat akun",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainMenu.class));
-                        }else {
-                            Toast.makeText(getApplicationContext(),"Error!" + task.getException().getMessage().toString(),Toast.LENGTH_LONG).show();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Berhasil membuat akun", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Error!" + task.getException().getMessage().toString(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
             }
         });
-
 
 
         btn_signin.setOnClickListener(new View.OnClickListener() {
@@ -154,18 +149,12 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String password = et_password.getText().toString();
-                if (checkPassword(password)) {
-                    if (password.length() < 8) {
-                        v_pass = false;
-                        errPass.setText("*password terdiri dari 8 karakter!");
-                        errPass.setVisibility(View.VISIBLE);
-                    } else {
-                        v_pass = true;
-                        errPass.setVisibility(View.INVISIBLE);
-                    }
+                if (password.length() >= 8) {
+                    v_pass = true;
+                    errPass.setVisibility(View.INVISIBLE);
                 } else {
                     v_pass = false;
-                    errPass.setText("*password terdiri dari huruf besar,kecil, angka dan spesial!");
+                    errPass.setText("*password terdiri dari 8 karakter!");
                     errPass.setVisibility(View.VISIBLE);
                 }
 
@@ -196,7 +185,7 @@ public class SignUp extends AppCompatActivity {
         return matcher.matches();
     }
 
-    public void checkValue(){
+    public void checkValue() {
         if (v_email == true && v_pass == true && v_username == true) {
             btn_daftar.setEnabled(true);
             btn_daftar.setBackgroundResource(R.color.hijau);
