@@ -80,6 +80,17 @@
                 android:fontFamily="@font/poppinsregular"
                 android:textSize="14sp"/>
             <TextView
+                android:id="@+id/daftarKost"
+                android:layout_marginTop="20dp"
+                android:layout_width="343dp"
+                android:layout_height="40dp"
+                android:text="DAFTARKAN KOST"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:background="@drawable/bg_hijau"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppinbold"/>
+            <TextView
                 android:id="@+id/btn_logout"
                 android:layout_marginTop="20dp"
                 android:layout_width="343dp"

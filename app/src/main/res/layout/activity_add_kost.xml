@@ -29,6 +29,7 @@
                     android:paddingTop="10dp">
 
                     <ImageView
+                        android:onClick="balik"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_arrow_back" />
@@ -91,6 +92,7 @@
                     app:hintTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_namaKos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1" />
@@ -107,8 +109,10 @@
                     android:textSize="14sp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/coverImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/no_image" />
 
                 <TextView
@@ -133,6 +137,7 @@
                     app:hintTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_noTelp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1" />
@@ -160,6 +165,7 @@
                     app:hintTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_alamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="4" />
@@ -187,6 +193,7 @@
                     app:hintTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_kota"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1" />
@@ -213,6 +220,7 @@
                     app:hintTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_linkGMap"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1" />
@@ -233,17 +241,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_abu"
-                    android:hint="Pilih..."
-                    app:boxStrokeColor="#fff"
+                    app:boxStrokeColor="#F6F6F6"
                     app:boxStrokeWidth="0dp"
-                    app:hintEnabled="true"
+                    android:hint="Pilih"
                     app:hintTextColor="@color/black">
 
                     <AutoCompleteTextView
+                        android:id="@+id/et_jenisKost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none" />
-
+                        android:inputType="none"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -256,31 +263,37 @@
                     android:textSize="14sp" />
 
                 <CheckBox
+                    android:id="@+id/fslts1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="AC" />
 
                 <CheckBox
+                    android:id="@+id/fslts2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="K. Mandi Dalam" />
 
                 <CheckBox
+                    android:id="@+id/fslts3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Kasur" />
 
                 <CheckBox
+                    android:id="@+id/fslts4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Kipas" />
 
                 <CheckBox
+                    android:id="@+id/fslts5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Lemari" />
 
                 <CheckBox
+                    android:id="@+id/fslts6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="WiFi" />
@@ -306,6 +319,7 @@
                     app:hintTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_deskripsi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="4" />
