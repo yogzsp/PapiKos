@@ -120,7 +120,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl1.isChecked()) {
                     mFasilitas.add(fasl1.getText().toString());
                 } else {
-                    mFasilitas.add(fasl1.getText().toString());
+                    mFasilitas.remove(fasl1.getText().toString());
                 }
             }
         });
@@ -131,7 +131,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl2.isChecked()) {
                     mFasilitas.add(fasl2.getText().toString());
                 } else {
-                    mFasilitas.add(fasl2.getText().toString());
+                    mFasilitas.remove(fasl2.getText().toString());
                 }
             }
         });
@@ -142,7 +142,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl3.isChecked()) {
                     mFasilitas.add(fasl3.getText().toString());
                 } else {
-                    mFasilitas.add(fasl3.getText().toString());
+                    mFasilitas.remove(fasl3.getText().toString());
                 }
             }
         });
@@ -153,7 +153,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl4.isChecked()) {
                     mFasilitas.add(fasl4.getText().toString());
                 } else {
-                    mFasilitas.add(fasl4.getText().toString());
+                    mFasilitas.remove(fasl4.getText().toString());
                 }
             }
         });
@@ -164,7 +164,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl5.isChecked()) {
                     mFasilitas.add(fasl5.getText().toString());
                 } else {
-                    mFasilitas.add(fasl5.getText().toString());
+                    mFasilitas.remove(fasl5.getText().toString());
                 }
             }
         });
@@ -175,7 +175,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl6.isChecked()) {
                     mFasilitas.add(fasl6.getText().toString());
                 } else {
-                    mFasilitas.add(fasl6.getText().toString());
+                    mFasilitas.remove(fasl6.getText().toString());
                 }
             }
         });
