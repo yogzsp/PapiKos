@@ -47,7 +47,7 @@ public class AddKost extends AppCompatActivity {
 
     AutoCompleteTextView et_jenisKost;
     ArrayAdapter<String> itemJenisKost;
-    String[] JenisKos = {"Kost Campur", "Kost Cewek", "Kost Cowok"};
+    String[] JenisKos = {"Kost Campur", "Kost Putri", "Kost Putra"};
 
     SharedPreferences sharedPreferences;
 

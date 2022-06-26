@@ -56,6 +56,7 @@ public class Detail extends AppCompatActivity {
         tv_namaKost = findViewById(R.id.namaKos);
         tv_kotaKost = findViewById(R.id.lokasiKos);
         tv_jenisKost = findViewById(R.id.tipeKos);
+        tv_hargaKost = findViewById(R.id.hargaKost);
         tv_deskripsiKost = findViewById(R.id.deskripsiKost);
         tv_fasilitasKost = findViewById(R.id.fasilitasKos);
         tv_GMapKost = findViewById(R.id.linkGMap);
@@ -86,12 +87,14 @@ public class Detail extends AppCompatActivity {
                     GMapKost = dataKost.getLinkGMapKost();
                     fasilitasKost = "+ "+dataKost.getFasilitasKost().replaceAll("\n","\n+ ");
                     fasilitasKost = fasilitasKost.substring(0,fasilitasKost.length() - 2);
+                    hargaKost = dataKost.getHargaKost();
                     deskripsiKost = dataKost.getDeskripsiKost();
                     jenisKost= dataKost.getJenisKost();
                     kotaKost = dataKost.getKotaKost();
                     namaKost = dataKost.getNamaKost();
 
                     tv_namaKost.setText(namaKost);
+                    tv_hargaKost.setText("Rp. "+hargaKost+"/bln");
                     tv_kotaKost.setText(kotaKost);
                     tv_jenisKost.setText(jenisKost);
                     tv_deskripsiKost.setText(deskripsiKost);
