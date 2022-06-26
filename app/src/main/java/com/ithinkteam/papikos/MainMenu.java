@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+
 
 public class MainMenu extends AppCompatActivity implements AdaptorDB.MClickListener{
     AdaptorDB adaptorDB;
@@ -39,20 +42,35 @@ public class MainMenu extends AppCompatActivity implements AdaptorDB.MClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setSelectedItemId(R.id.homeNavbar);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.homeNavbar:
+                        return true;
+                    case  R.id.profileNavbar:
+                        startActivity(new Intent(getApplicationContext(),ProfileUser.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case  R.id.favoriteNavbar:
+//                        startActivity(new Intent(getApplicationContext(),ProfileUser.class));
+//                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
         init();
         initFirebase();
     }
 
     public void init(){
         rv = findViewById(R.id.rc_menu_kos);
-        LinearLayout profile = findViewById(R.id.profileMenu);
-
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),ProfileUser.class));
-            }
-        });
     }
 
     public void initFirebase(){
