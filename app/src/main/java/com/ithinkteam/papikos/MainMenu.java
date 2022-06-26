@@ -58,7 +58,7 @@ public class MainMenu extends AppCompatActivity implements AdaptorDB.MClickListe
     public void initFirebase(){
         FirebaseApp.initializeApp(this);
         mFirebaseDatabase= FirebaseDatabase.getInstance();
-        mDatabaseReference=mFirebaseDatabase.getReference("POST");
+        mDatabaseReference=mFirebaseDatabase.getReference("KOST");
         read();
     }
 

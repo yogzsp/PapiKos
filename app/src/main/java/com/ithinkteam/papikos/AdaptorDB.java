@@ -31,14 +31,14 @@ public class AdaptorDB extends RecyclerView.Adapter<AdaptorDB.FavoriteViewHolder
 
     public static class FavoriteViewHolder extends RecyclerView.ViewHolder implements
             View.OnClickListener {
-        TextView et_namaKost, et_fasilitas, et_kotaKost, et_jenisKost;
+        TextView et_namaKost, et_fasilitas, et_kotaKost, et_jenisKost,et_harga;
         ImageView coverImage;
 
         public FavoriteViewHolder(@NonNull View view) {
             super(view);
             et_namaKost = view.findViewById(R.id.namaKos);
             et_kotaKost = view.findViewById(R.id.lokasiKos);
-
+            et_harga = view.findViewById(R.id.hargaKost);
             et_jenisKost = view.findViewById(R.id.tipeKos);
             et_fasilitas = view.findViewById(R.id.fasilitasKos);
 
@@ -69,7 +69,8 @@ public class AdaptorDB extends RecyclerView.Adapter<AdaptorDB.FavoriteViewHolder
         holder.et_namaKost.setText(mp.getNamaKost());
         holder.et_kotaKost.setText(mp.getKotaKost());
         holder.et_jenisKost.setText(mp.getJenisKost());
-        holder.et_fasilitas.setText(mp.getFasilitasKost().replaceAll("\n","•"));
+        holder.et_harga.setText("Rp. "+mp.getHargaKost()+"/bln");
+        holder.et_fasilitas.setText(mp.getFasilitasKost().replaceAll("\n"," • "));
     }
 
     @Override

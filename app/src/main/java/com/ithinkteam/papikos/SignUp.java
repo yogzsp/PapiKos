@@ -1,28 +1,46 @@
 package com.ithinkteam.papikos;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
 
+    public static final String TAG = "TAG";
     FirebaseAuth firebaseAuth;
+    DatabaseReference mDatabaseReference;
+    FirebaseDatabase mFirebaseDatabase;
+    SharedPreferences sharedPreferences;
+    FirebaseFirestore firebaseFirestore;
+    String userID;
+
     TextView btn_daftar, btn_signin, errEmail, errPass, errUsername;
     EditText et_email, et_password, et_username;
     boolean v_email = false, v_pass = false, v_username = false;
@@ -31,6 +49,10 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
+
+
+        sharedPreferences = getSharedPreferences(SesiAkun.SHARED_PREF_NAME,MODE_PRIVATE);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         btn_daftar = findViewById(R.id.btn_daftar);
         btn_signin = findViewById(R.id.signIn);
@@ -46,6 +68,7 @@ public class SignUp extends AppCompatActivity {
         et_password = findViewById(R.id.password);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
 
         if (firebaseAuth.getCurrentUser() != null) {
@@ -66,8 +89,26 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Berhasil membuat akun", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                            userID = firebaseAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = firebaseFirestore.collection("users").document(userID);
+                            Map<String,Object> user = new HashMap<>();
+                            user.put("email",email);
+                            user.put("username",username);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Log.d(TAG, "onSuccess: berhasil");
+                                    Toast.makeText(getApplicationContext(), "Berhasil membuat akun", Toast.LENGTH_SHORT).show();
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(SesiAkun.KEY_EMAIL,email);
+                                    editor.putString(SesiAkun.KEY_USERNAME,username);
+                                    editor.apply();
+
+                                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                                    finish();
+                                }
+                            });
+
                         } else {
                             Toast.makeText(getApplicationContext(), "Error!" + task.getException().getMessage().toString(), Toast.LENGTH_LONG).show();
                         }

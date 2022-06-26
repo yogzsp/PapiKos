@@ -94,6 +94,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_namaKos"
                         android:layout_width="match_parent"
+                        android:inputType="text"
                         android:layout_height="wrap_content"
                         android:maxLines="1" />
 
@@ -138,6 +139,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_noTelp"
+                        android:inputType="phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1" />
@@ -167,6 +169,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_harga"
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1" />
@@ -195,6 +198,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_deskripsi"
+                        android:inputType="text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="4" />
@@ -222,6 +226,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_alamat"
+                        android:inputType="text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="4" />
@@ -249,6 +254,7 @@
                     app:hintTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:inputType="text"
                         android:id="@+id/et_kota"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -276,6 +282,7 @@
                     app:hintTextColor="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:inputType="textUri"
                         android:id="@+id/et_linkGMap"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

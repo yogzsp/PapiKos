@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -32,10 +33,12 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.InputStream;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class AddKost extends AppCompatActivity {
-    EditText et_namaKost, et_alamatKost, et_noHP, et_kotaKost, et_linkGMap, et_deskripsi;
+    EditText et_namaKost, et_alamatKost, et_noHP, et_kotaKost, et_linkGMap, et_deskripsi,et_harga;
     TextView btn_tambah;
     ImageView coverImage;
     CheckBox fasl1, fasl2, fasl3, fasl4, fasl5, fasl6;
@@ -45,6 +48,8 @@ public class AddKost extends AppCompatActivity {
     AutoCompleteTextView et_jenisKost;
     ArrayAdapter<String> itemJenisKost;
     String[] JenisKos = {"Kost Campur", "Kost Cewek", "Kost Cowok"};
+
+    SharedPreferences sharedPreferences;
 
     private DatabaseReference mDatabaseReference;
     private FirebaseDatabase mFirebaseDatabase;
@@ -65,14 +70,15 @@ public class AddKost extends AppCompatActivity {
     public void initFirebase() {
         FirebaseApp.initializeApp(AddKost.this);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference("POST");
-        sReference = FirebaseStorage.getInstance().getReference("POST");
+        mDatabaseReference = mFirebaseDatabase.getReference("KOST");
+        sReference = FirebaseStorage.getInstance().getReference("KOST");
     }
 
     public void init() {
         et_namaKost = findViewById(R.id.et_namaKos);
         et_alamatKost = findViewById(R.id.et_alamat);
         et_noHP = findViewById(R.id.et_noTelp);
+        et_harga = findViewById(R.id.et_harga);
         et_kotaKost = findViewById(R.id.et_kota);
         et_linkGMap = findViewById(R.id.et_linkGMap);
         et_deskripsi = findViewById(R.id.et_deskripsi);
@@ -204,6 +210,9 @@ public class AddKost extends AppCompatActivity {
 
     private void savePost() {
         if (resultUri != null) {
+            sharedPreferences = getSharedPreferences(SesiAkun.SHARED_PREF_NAME,MODE_PRIVATE);
+            String UsernameShared = sharedPreferences.getString(SesiAkun.KEY_USERNAME,null);
+            String EmailShared = sharedPreferences.getString(SesiAkun.KEY_EMAIL,null);
             // Progress dialog
             final ProgressDialog progressDialog = new ProgressDialog(this);
 
@@ -233,11 +242,16 @@ public class AddKost extends AppCompatActivity {
                 Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uri.isComplete()) ;
                 Uri url = uri.getResult();
+                NumberFormat formatter = new DecimalFormat("#,###");
+                double HargaKost = Double.parseDouble(et_harga.getText().toString());
+                String HargaKostFix = formatter.format(HargaKost);
 //                Proses input database
+                post.setEmail(EmailShared);
                 post.setNamaKost(et_namaKost.getText().toString());
                 post.setNoHPKost(et_noHP.getText().toString());
                 post.setAlamatKost(et_alamatKost.getText().toString());
                 post.setKotaKost(et_kotaKost.getText().toString());
+                post.setHargaKost(HargaKostFix);
                 post.setLinkGMapKost(et_linkGMap.getText().toString());
                 post.setJenisKost(et_jenisKost.getText().toString());
                 post.setFasilitasKost(fasilitas);

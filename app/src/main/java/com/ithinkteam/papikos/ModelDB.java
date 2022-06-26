@@ -2,8 +2,11 @@ package com.ithinkteam.papikos;
 
 public class ModelDB {
     private String id;
+    private String Email;
+    private String Username;
     private String namaKost;
     private String NoHPKost;
+    private String HargaKost;
     private String AlamatKost;
     private String KotaKost;
     private String LinkGMapKost;
@@ -90,5 +93,29 @@ public class ModelDB {
 
     public void setDeskripsiKost(String deskripsiKost) {
         DeskripsiKost = deskripsiKost;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    public String getHargaKost() {
+        return HargaKost;
+    }
+
+    public void setHargaKost(String hargaKost) {
+        HargaKost = hargaKost;
     }
 }
