@@ -184,6 +184,7 @@ public class AddKost extends AppCompatActivity {
         btn_tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_tambah.setEnabled(false);
 //                susun fasilitas
                 StringBuilder stringBuilder = new StringBuilder();
                 for (String s : mFasilitas)

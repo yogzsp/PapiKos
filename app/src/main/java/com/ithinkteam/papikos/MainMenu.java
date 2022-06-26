@@ -96,6 +96,12 @@ public class MainMenu extends AppCompatActivity implements AdaptorDB.MClickListe
     public void onClick(int position) {
         ModelDB modelPost = adaptorDB.getModelDB(position);
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        startActivity(new Intent(getApplicationContext(),Detail.class));
+        Toast.makeText(getApplicationContext(),"ID "+modelPost.getId(),Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getApplication(),Detail.class);
+
+        intent.putExtra("id_kost",modelPost.getId());
+        startActivity(intent);
+//        startActivity(new Intent(getApplicationContext(),Detail.class));
     }
 }
