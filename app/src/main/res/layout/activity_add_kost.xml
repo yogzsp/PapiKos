@@ -29,9 +29,9 @@
                     android:paddingTop="10dp">
 
                     <ImageView
-                        android:onClick="balik"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
+                        android:onClick="balik"
                         android:src="@drawable/ic_arrow_back" />
 
                     <LinearLayout
@@ -149,6 +149,62 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppinsregular"
+                    android:text="Harga"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/harga"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_abu"
+                    app:boxStrokeColor="#fff"
+                    app:boxStrokeWidth="0dp"
+                    app:counterMaxLength="10"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_harga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppinsregular"
+                    android:text="Deskripsi"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/deskripsi"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_abu"
+                    app:boxStrokeColor="#fff"
+                    app:boxStrokeWidth="0dp"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_deskripsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppinsregular"
                     android:text="Alamat"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -241,16 +297,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_abu"
+                    android:hint="Pilih"
                     app:boxStrokeColor="#F6F6F6"
                     app:boxStrokeWidth="0dp"
-                    android:hint="Pilih"
                     app:hintTextColor="@color/black">
 
                     <AutoCompleteTextView
                         android:id="@+id/et_jenisKost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"/>
+                        android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -297,33 +353,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="WiFi" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/poppinsregular"
-                    android:text="Deskripsi"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/deskripsi"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_abu"
-                    app:boxStrokeColor="#fff"
-                    app:boxStrokeWidth="0dp"
-                    app:hintEnabled="false"
-                    app:hintTextColor="@color/black">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_deskripsi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="4" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
