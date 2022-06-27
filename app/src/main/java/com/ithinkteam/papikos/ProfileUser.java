@@ -40,7 +40,7 @@ public class ProfileUser extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
                 startActivity(new Intent(getApplicationContext(),Signin.class));
-                finish();
+                finishAffinity();
             }
         });
 

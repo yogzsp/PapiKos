@@ -3,6 +3,7 @@ package com.ithinkteam.papikos;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -43,6 +44,7 @@ public class Signin extends AppCompatActivity implements View.OnClickListener{
     public static final String TAG = "TAG";
     TextView btn_masuk, btn_signup,btn_lupaPass;
     FirebaseAuth firebaseAuth;
+    ProgressDialog progressDialog;
     EditText et_email, et_password;
 
     DatabaseReference mDatabaseReference;
@@ -79,21 +81,19 @@ public class Signin extends AppCompatActivity implements View.OnClickListener{
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-
                                 firebaseFirestore.collection("users")
                                         .get()
                                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                             @Override
                                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                                 if(!queryDocumentSnapshots.isEmpty()){
-
                                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
 
                                                     for(DocumentSnapshot d : list){
                                                         String emailDicari = d.getString("email");
                                                         String usernameDicari = d.getString("username");
                                                         if(email.equals(emailDicari)){
-                                                            Toast.makeText(getApplicationContext(), "Berhasil membuat akun", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(getApplicationContext(), "Selamat datang "+usernameDicari, Toast.LENGTH_SHORT).show();
                                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                                             editor.putString(SesiAkun.KEY_EMAIL,email);
                                                             editor.putString(SesiAkun.KEY_USERNAME,usernameDicari);

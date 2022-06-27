@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,6 +45,7 @@ public class AddKost extends AppCompatActivity {
     CheckBox fasl1, fasl2, fasl3, fasl4, fasl5, fasl6;
     ArrayList<String> mFasilitas;
     String fasilitas;
+    ProgressDialog progressDialog;
 
     AutoCompleteTextView et_jenisKost;
     ArrayAdapter<String> itemJenisKost;
@@ -227,6 +229,7 @@ public class AddKost extends AppCompatActivity {
                 // Memunculkan loading 0% - 100%
                 double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                 System.out.println(progress);
+                progressDialog.show();
                 progressDialog.setMessage("Uploading.." + ((int) progress) + "%");
             }).addOnPausedListener(taskSnapshot -> {
                 // Membuat progress jeda
@@ -234,7 +237,6 @@ public class AddKost extends AppCompatActivity {
                 System.out.println("Upload terjeda");
             }).addOnFailureListener(taskSnapshot -> {
                 // Membuat progress gagal
-
                 Toast.makeText(getApplicationContext(), "Gagal menambah data!", Toast.LENGTH_SHORT).show();
 
             }).addOnSuccessListener(taskSnapshot -> {

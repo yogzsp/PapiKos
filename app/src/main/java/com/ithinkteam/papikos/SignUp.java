@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ public class SignUp extends AppCompatActivity {
     FirebaseDatabase mFirebaseDatabase;
     SharedPreferences sharedPreferences;
     FirebaseFirestore firebaseFirestore;
+    ProgressDialog progressDialog;
     String userID;
 
     TextView btn_daftar, btn_signin, errEmail, errPass, errUsername;
@@ -103,7 +106,6 @@ public class SignUp extends AppCompatActivity {
                                     editor.putString(SesiAkun.KEY_EMAIL,email);
                                     editor.putString(SesiAkun.KEY_USERNAME,username);
                                     editor.apply();
-
                                     startActivity(new Intent(getApplicationContext(), MainMenu.class));
                                     finish();
                                 }
