@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Detail"
+    android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:orientation="vertical">
+    tools:context=".Detail">
 
     <RelativeLayout
+        android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
-        android:paddingTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
 
         <ImageView
             android:id="@+id/tombolBalik"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:paddingTop="5dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_marginLeft="0dp"
+            android:paddingTop="5dp"
             android:src="@drawable/ic_arrow_back" />
 
         <LinearLayout
@@ -33,7 +34,7 @@
             android:layout_alignRight="@id/tombolNotif"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -53,34 +54,218 @@
                 android:textFontWeight="700"
                 android:textSize="20sp" />
         </LinearLayout>
+
         <ImageView
             android:id="@+id/tombolNotif"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="0dp"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:paddingTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="0dp"
             android:src="@drawable/ic_bell_none" />
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNav"
+        android:layout_below="@+id/navbar"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
         android:paddingBottom="20dp">
         <!--    Detail Gambar-->
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp">
-            <ImageView
-                android:id="@+id/gambarKos"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/kos"
-                android:scaleType="centerCrop"
-                />
+                android:layout_height="220dp">
+
+                <ImageView
+                    android:id="@+id/gambarKos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/kos" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bd_bottom"
+                android:orientation="vertical"
+                android:paddingBottom="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/namaKos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="0dp"
+                        android:fontFamily="@font/poppinssemibold"
+                        android:text="Kost Indah Permai Kekalik Jaya"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/likeKos"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="0dp"
+                        android:src="@drawable/ic_love" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tipeKos"
+                        android:layout_width="74dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:foreground="@drawable/border_abu"
+                        android:gravity="center"
+                        android:text="Kost Campur"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ic_location" />
+
+                        <TextView
+                            android:id="@+id/lokasiKos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinsregular"
+                            android:text="Mataram"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/linkGMap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="Lihat Lokasi"
+                        android:textColor="@color/biru" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bd_bottom"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="0dp"
+                    android:fontFamily="@font/poppinssemibold"
+                    android:text="Deskripsi"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/deskripsiKost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinslight"
+                    android:justificationMode="inter_word"
+                    android:text="Kost indah permai terbilang sangat nyaman dengan sirkulasi udara yang segar karena lokasinya dekat dengan aliran sungai yang ditumbuhi pepohonan. Kost ini sudah dilengkapi dengan berbagai fasilitas yang akan memanjakan penghuninya, dan yang paling penting kost ini tidak angker. " />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="0dp"
+                    android:fontFamily="@font/poppinssemibold"
+                    android:text="Fasilitas"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/fasilitasKos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinslight"
+                    android:justificationMode="inter_word"
+                    android:text="+ AC\n+ K. Mandi Dalam\n+ Kasur\n+ Lemari\n+ WiFi" />
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/bottomNav"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="20dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hargaKost"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="0dp"
+            android:fontFamily="@font/poppinssemibold"
+            android:gravity="center_vertical"
+            android:textSize="17sp"
+            android:text="Rp1.050.000 / bln"
+            android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/btn_sewa"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="0dp"
+            android:layout_width="115dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_hijau"
+            android:fontFamily="@font/poppinbold"
+            android:gravity="center"
+            android:text="Ajukan Sewa"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+<!--    <LinearLayout-->
+
+</RelativeLayout>

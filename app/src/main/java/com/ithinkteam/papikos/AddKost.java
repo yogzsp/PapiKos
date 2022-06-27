@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,10 +45,11 @@ public class AddKost extends AppCompatActivity {
     CheckBox fasl1, fasl2, fasl3, fasl4, fasl5, fasl6;
     ArrayList<String> mFasilitas;
     String fasilitas;
+    ProgressDialog progressDialog;
 
     AutoCompleteTextView et_jenisKost;
     ArrayAdapter<String> itemJenisKost;
-    String[] JenisKos = {"Kost Campur", "Kost Cewek", "Kost Cowok"};
+    String[] JenisKos = {"Kost Campur", "Kost Putri", "Kost Putra"};
 
     SharedPreferences sharedPreferences;
 
@@ -120,7 +122,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl1.isChecked()) {
                     mFasilitas.add(fasl1.getText().toString());
                 } else {
-                    mFasilitas.add(fasl1.getText().toString());
+                    mFasilitas.remove(fasl1.getText().toString());
                 }
             }
         });
@@ -131,7 +133,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl2.isChecked()) {
                     mFasilitas.add(fasl2.getText().toString());
                 } else {
-                    mFasilitas.add(fasl2.getText().toString());
+                    mFasilitas.remove(fasl2.getText().toString());
                 }
             }
         });
@@ -142,7 +144,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl3.isChecked()) {
                     mFasilitas.add(fasl3.getText().toString());
                 } else {
-                    mFasilitas.add(fasl3.getText().toString());
+                    mFasilitas.remove(fasl3.getText().toString());
                 }
             }
         });
@@ -153,7 +155,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl4.isChecked()) {
                     mFasilitas.add(fasl4.getText().toString());
                 } else {
-                    mFasilitas.add(fasl4.getText().toString());
+                    mFasilitas.remove(fasl4.getText().toString());
                 }
             }
         });
@@ -164,7 +166,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl5.isChecked()) {
                     mFasilitas.add(fasl5.getText().toString());
                 } else {
-                    mFasilitas.add(fasl5.getText().toString());
+                    mFasilitas.remove(fasl5.getText().toString());
                 }
             }
         });
@@ -175,7 +177,7 @@ public class AddKost extends AppCompatActivity {
                 if (fasl6.isChecked()) {
                     mFasilitas.add(fasl6.getText().toString());
                 } else {
-                    mFasilitas.add(fasl6.getText().toString());
+                    mFasilitas.remove(fasl6.getText().toString());
                 }
             }
         });
@@ -184,6 +186,7 @@ public class AddKost extends AppCompatActivity {
         btn_tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_tambah.setEnabled(false);
 //                susun fasilitas
                 StringBuilder stringBuilder = new StringBuilder();
                 for (String s : mFasilitas)
@@ -226,6 +229,7 @@ public class AddKost extends AppCompatActivity {
                 // Memunculkan loading 0% - 100%
                 double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                 System.out.println(progress);
+                progressDialog.show();
                 progressDialog.setMessage("Uploading.." + ((int) progress) + "%");
             }).addOnPausedListener(taskSnapshot -> {
                 // Membuat progress jeda
@@ -233,7 +237,6 @@ public class AddKost extends AppCompatActivity {
                 System.out.println("Upload terjeda");
             }).addOnFailureListener(taskSnapshot -> {
                 // Membuat progress gagal
-
                 Toast.makeText(getApplicationContext(), "Gagal menambah data!", Toast.LENGTH_SHORT).show();
 
             }).addOnSuccessListener(taskSnapshot -> {

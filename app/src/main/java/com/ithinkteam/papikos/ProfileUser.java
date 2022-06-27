@@ -1,14 +1,17 @@
 package com.ithinkteam.papikos;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileUser extends AppCompatActivity {
@@ -37,7 +40,7 @@ public class ProfileUser extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
                 startActivity(new Intent(getApplicationContext(),Signin.class));
-                finish();
+                finishAffinity();
             }
         });
 
@@ -48,12 +51,26 @@ public class ProfileUser extends AppCompatActivity {
             }
         });
 
-        LinearLayout home = findViewById(R.id.homeMenu);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        home.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setSelectedItemId(R.id.profileNavbar);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainMenu.class));
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.homeNavbar:
+                        startActivity(new Intent(getApplicationContext(),MainMenu.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case  R.id.profileNavbar:
+                        return true;
+                    case  R.id.favoriteNavbar:
+//                        startActivity(new Intent(getApplicationContext(),ProfileUser.class));
+//                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
             }
         });
     }
