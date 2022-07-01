@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileUser extends AppCompatActivity {
-    TextView btn_logout,daftarKost,namaUser;
+    TextView btn_logout,daftarKost,namaUser,listKost;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -24,6 +24,7 @@ public class ProfileUser extends AppCompatActivity {
         setContentView(R.layout.profile_user);
         btn_logout = findViewById(R.id.btn_logout);
         daftarKost = findViewById(R.id.daftarKost);
+        listKost = findViewById(R.id.listKost);
         namaUser = findViewById(R.id.namaUser);
 
         sharedPreferences = getSharedPreferences(SesiAkun.SHARED_PREF_NAME,MODE_PRIVATE);
@@ -48,6 +49,12 @@ public class ProfileUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),AddKost.class));
+            }
+        });
+        listKost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MenuAdmin.class));
             }
         });
 

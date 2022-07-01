@@ -27,6 +27,12 @@
             android:name=".MainMenu"
             android:exported="true" />
         <activity
+            android:name=".MenuAdmin"
+            android:exported="true" />
+        <activity
+            android:name=".DetailAdm"
+            android:exported="true" />
+        <activity
             android:name=".SignUp"
             android:exported="true" />
         <activity

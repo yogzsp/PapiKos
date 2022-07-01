@@ -1,26 +1,25 @@
 package com.ithinkteam.papikos;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -32,55 +31,32 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.Locale;
 
-
-public class MainMenu extends AppCompatActivity implements AdaptorDB.MClickListener{
-    AdaptorDB adaptorDB;
+public class MenuAdmin extends AppCompatActivity implements AdminDB.MClickListener{
+    public static final String TAG = "TAG";
+    AdminDB adaptorDB;
+    String pencarian;
     private ProgressDialog progressDialog;
-
+    SharedPreferences sharedPreferences;
     private DatabaseReference mDatabaseReference;
     private FirebaseDatabase mFirebaseDatabase;
     private StorageReference sReference;
-    String pencarian;
-    EditText cariKost;
+
+//
 
     RecyclerView rv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu);
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
-        bottomNavigationView.setSelectedItemId(R.id.homeNavbar);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.homeNavbar:
-                        return true;
-                    case  R.id.profileNavbar:
-                        startActivity(new Intent(getApplicationContext(),ProfileUser.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case  R.id.favoriteNavbar:
-//                        startActivity(new Intent(getApplicationContext(),ProfileUser.class));
-//                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
+        setContentView(R.layout.main_menu_adm);
 
         init();
         initFirebase();
     }
 
     public void init(){
-
         rv = findViewById(R.id.rc_menu_kos);
 
-        cariKost = findViewById(R.id.inputCariKos);
+        EditText cariKost = findViewById(R.id.cariKos);
 
         cariKost.addTextChangedListener(new TextWatcher() {
             @Override
@@ -106,19 +82,27 @@ public class MainMenu extends AppCompatActivity implements AdaptorDB.MClickListe
         FirebaseApp.initializeApp(this);
         mFirebaseDatabase= FirebaseDatabase.getInstance();
         mDatabaseReference=mFirebaseDatabase.getReference("KOST");
+
         read();
     }
 
-    private void readCari(){
+    private void read(){
         config();
+        sharedPreferences = getSharedPreferences(SesiAkun.SHARED_PREF_NAME,MODE_PRIVATE);
+
+        String EmailShared = sharedPreferences.getString(SesiAkun.KEY_EMAIL,null);
+
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getChildrenCount() > 0){
                     for(DataSnapshot mDataSnap : snapshot.getChildren()){
                         ModelDB mp = mDataSnap.getValue(ModelDB.class);
-                        if(mp.getNamaKost().toLowerCase(Locale.ROOT).contains(pencarian)) {
+                        if(mp.getEmail().contains(EmailShared)) {
                             adaptorDB.addModelDB(mp);
+                            Log.d(TAG, "onDataChange: "+mp.getEmail());
+                        }else {
+                            Log.d(TAG, "onDataChange-salah: "+mp.getEmail());
                         }
                     }
                 }
@@ -131,15 +115,20 @@ public class MainMenu extends AppCompatActivity implements AdaptorDB.MClickListe
         });
     }
 
-    private void read(){
+    private void readCari(){
         config();
+        sharedPreferences = getSharedPreferences(SesiAkun.SHARED_PREF_NAME,MODE_PRIVATE);
+
+        String EmailShared = sharedPreferences.getString(SesiAkun.KEY_EMAIL,null);
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.getChildrenCount() > 0){
                     for(DataSnapshot mDataSnap : snapshot.getChildren()){
                         ModelDB mp = mDataSnap.getValue(ModelDB.class);
-                        adaptorDB.addModelDB(mp);
+                        if(mp.getNamaKost().toLowerCase(Locale.ROOT).contains(pencarian) && mp.getEmail().contains(EmailShared)) {
+                            adaptorDB.addModelDB(mp);
+                        }
                     }
                 }
             }
@@ -155,21 +144,19 @@ public class MainMenu extends AppCompatActivity implements AdaptorDB.MClickListe
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        adaptorDB=new AdaptorDB(this);
+        adaptorDB=new AdminDB(this);
         rv.setAdapter(adaptorDB);
     }
-
-
 
     @Override
     public void onClick(int position) {
         ModelDB modelPost = adaptorDB.getModelDB(position);
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        Intent intent = new Intent(getApplication(),Detail.class);
+        Intent intent = new Intent(getApplication(),DetailAdm.class);
 
         intent.putExtra("id_kost",modelPost.getId());
         startActivity(intent);
-//        startActivity(new Intent(getApplicationContext(),Detail.class));
+        finish();
     }
 }

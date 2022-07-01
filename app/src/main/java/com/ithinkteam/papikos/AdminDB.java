@@ -1,10 +1,10 @@
 package com.ithinkteam.papikos;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,11 +16,12 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdaptorDB extends RecyclerView.Adapter<AdaptorDB.FavoriteViewHolder> {
+public class AdminDB extends RecyclerView.Adapter<AdminDB.FavoriteViewHolder> {
     public static MClickListener nlistener;
-    private List<com.ithinkteam.papikos.ModelDB> list;
+    private List<ModelDB> list;
+    SharedPreferences sharedPreferences;
 
-    public AdaptorDB(MClickListener listener) {
+    public AdminDB(MClickListener listener) {
         list = new ArrayList<>();
         nlistener = listener;
     }
@@ -29,9 +30,8 @@ public class AdaptorDB extends RecyclerView.Adapter<AdaptorDB.FavoriteViewHolder
         void onClick(int position);
     }
 
-    public static class FavoriteViewHolder extends RecyclerView.ViewHolder implements
-            View.OnClickListener {
-        TextView et_namaKost, et_fasilitas, et_kotaKost, et_jenisKost,et_harga;
+    public static class FavoriteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView et_namaKost, et_fasilitas, et_kotaKost, et_jenisKost,et_harga,btn_hapus;
         ImageView coverImage;
 
         public FavoriteViewHolder(@NonNull View view) {
@@ -41,8 +41,10 @@ public class AdaptorDB extends RecyclerView.Adapter<AdaptorDB.FavoriteViewHolder
             et_harga = view.findViewById(R.id.hargaKost);
             et_jenisKost = view.findViewById(R.id.tipeKos);
             et_fasilitas = view.findViewById(R.id.fasilitasKos);
+            btn_hapus = view.findViewById(R.id.btn_hapus);
 
             coverImage = view.findViewById(R.id.gambarKos);
+
 
             itemView.setOnClickListener(this);
         }
@@ -64,7 +66,7 @@ public class AdaptorDB extends RecyclerView.Adapter<AdaptorDB.FavoriteViewHolder
     @SuppressLint("SetText18n")
     @Override
     public void onBindViewHolder(@NonNull FavoriteViewHolder holder, int position) {
-        com.ithinkteam.papikos.ModelDB mp = list.get(position);
+        ModelDB mp = list.get(position);
 
         Picasso.get().load(mp.getImage_url()).into(holder.coverImage);
         holder.et_namaKost.setText(mp.getNamaKost());
@@ -79,12 +81,12 @@ public class AdaptorDB extends RecyclerView.Adapter<AdaptorDB.FavoriteViewHolder
         return list != null ? list.size() : 0;
     }
 
-    public void addModelDB(com.ithinkteam.papikos.ModelDB op) {
+    public void addModelDB(ModelDB op) {
         list.add(op);
         notifyDataSetChanged();
     }
 
-    public com.ithinkteam.papikos.ModelDB getModelDB(int position) {
+    public ModelDB getModelDB(int position) {
         return list.get(position);
     }
 }
